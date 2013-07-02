@@ -20,6 +20,7 @@ class LesscssResourceMapper implements GrailsApplicationAware {
     static defaultIncludes = ['**/*.less']
 
     def map(resource, config) {
+        if(grailsApplication.config.grails?.resources?.mappers?.lesscss?.enabled == false ) return
         if(!lessCompiler) {
             lessCompiler = new LessCompiler()
             lessCompiler.setCompress(grailsApplication.config.grails?.resources?.mappers?.lesscss?.compress == true ?: false)
